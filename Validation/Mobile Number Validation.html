@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobile Number Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+	.btn {
+	  text-align:center;
+	}
+
+	
+        input[type="button"] {
+            padding: 10px 20px;
+	  
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        #s1 {
+            font-size: 14px;
+            margin-top: 10px;
+            transition: opacity 0.3s;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+    <script>
+        function validate() {
+            var mob = document.getElementById("t1").value;
+            if (mob === "") {
+                document.getElementById("s1").innerHTML = "Please Enter the mobile number";
+                document.getElementById("s1").style.color = "red";
+            } else if (isNaN(mob)) {
+                document.getElementById("s1").innerHTML = "Please Enter only digits";
+                document.getElementById("s1").style.color = "red";
+            } else if (mob.length !== 10) {
+                document.getElementById("s1").innerHTML = "Please Enter 10 digits number";
+                document.getElementById("s1").style.color = "red";
+            } else if (!(mob.startsWith("9") || mob.startsWith("8") || mob.startsWith("7"))) {
+                document.getElementById("s1").innerHTML = "Please Enter valid Mobile number";
+                document.getElementById("s1").style.color = "red";
+            } else {
+                document.getElementById("s1").innerHTML = "Ok, You Entered valid Mobile number";
+                document.getElementById("s1").style.color = "green";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Mobile Number Validation</h1>
+        <label for="t1">Enter mobile number</label>
+        <input type="text" id="t1" placeholder="Enter 10 digit mobile number" aria-label="Mobile Number" />
+        <br/>
+        <span id="s1" style="color:red" aria-live="polite"></span>
+        <br/>
+<div class="btn">
+        <input type="button" value="Validate" onclick="validate()" />
+</div>
+    </div>
+</body>
+</html>
