@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 10px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #007bff;
+        }
+        input[type="button"] {
+            width: 48%;
+            padding: 10px;
+            margin: 5px 1%;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+    <script>
+        function calculate() {
+            var amt = parseFloat(document.frm1.t1.value) || 0;
+            var rate = parseFloat(document.frm1.t2.value) || 0;
+            var time = parseFloat(document.frm1.t3.value) || 0;
+            var si = (amt * rate * time) / 100;
+            document.frm1.t4.value = si.toFixed(2);
+        }
+
+        function resetForm() {
+            document.frm1.reset();
+            document.frm1.t4.value = '';
+        }
+    </script>
+</head>
+<body>
+    <form name="frm1">
+        <h1>SI Calculator</h1>
+        <table>
+            <tr>
+                <td><label for="amount">Amount</label></td>
+                <td><input type="number" min="0" name="t1" id="amount" /></td>
+            </tr>
+            <tr>
+                <td><label for="rate">Rate</label></td>
+                <td><input type="number" min="0" name="t2" id="rate" /></td>
+            </tr>
+            <tr>
+                <td><label for="time">Time</label></td>
+                <td><input type="number" min="0" name="t3" id="time" /></td>
+            </tr>
+            <tr>
+                <td><label for="simpleInterest">Simple Interest</label></td>
+                <td><input type="number" name="t4" id="simpleInterest" readonly /></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="button" value="Calculate" onclick="calculate()" />
+                    <input type="button" value="Reset" onclick="resetForm()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
