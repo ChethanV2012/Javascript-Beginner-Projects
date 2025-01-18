@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marksheet Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light cyan background */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 60%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        input[type="number"], input[type="text"] {
+            width: 80%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+            box-sizing: border-box; /* Ensures padding is included in width */
+        }
+        input[type="number"]:focus, input[type="text"]:focus {
+            border-color: #007bff;
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+    <script>
+        function calculate() {
+            var s1, s2, s3, s4, s5, s6, Total, per;
+            s1 = parseInt(document.getElementById('sub1').value) || 0;
+            s2 = parseInt(document.getElementById('sub2').value) || 0;
+            s3 = parseInt(document.getElementById('sub3').value) || 0;
+            s4 = parseInt(document.getElementById('sub4').value) || 0;
+            s5 = parseInt(document.getElementById('sub5').value) || 0;
+            s6 = parseInt(document.getElementById('sub6').value) || 0;
+            Total = s1 + s2 + s3 + s4 + s5 + s6;
+            per = Total * 100 / 600;
+            document.getElementById('Total').value = Total;
+            document.getElementById('per').value = per.toFixed(2);
+            if (per >= 90) {
+                document.getElementById('grade').value = "A+";
+            } else if (per >= 80) {
+                document.getElementById('grade').value = "A";
+            } else if (per >= 70) {
+                document.getElementById('grade').value = "B";
+            } else if (per >= 60) {
+                document.getElementById('grade').value = "C";
+            } else if (per >= 50) {
+                document.getElementById('grade').value = "D";
+            } else {
+                document.getElementById('grade').value = "Fail";
+            }
+            document.getElementById('result').classList.add('fade-in');
+        }
+
+        function resetForm() {
+            document.getElementById('sub1').value = '';
+            document.getElementById('sub2').value = '';
+            document.getElementById('sub3').value = '';
+            document.getElementById('sub4').value = '';
+            document.getElementById('sub5').value = '';
+            document.getElementById('sub6').value = '';
+            document.getElementById('Total').value = '';
+            document.getElementById('per').value = '';
+            document.getElementById('grade').value = '';
+            document.getElementById('result').classList.remove('fade-in');
+        }
+    </script>
+</head>
+<body>
+    <h1>Marksheet Calculator</h1>
+    <form name="frm1">
+        <table id="result">
+            <tr>
+                <td>Aop</td>
+                <td><input type="number" min="0" max="100" id="sub1" /> (Max:100)</td>
+            </tr>
+            <tr>
+                <td>Coa</td>
+                <td><input type="number" min="0" max="100" id="sub2" /> (Max:100)</td>
+            </tr>
+            <tr>
+                <td>Toc</td>
+                <td><input type="number" min="0" max="100" id="sub3" /> (Max:100)</td>
+            </tr>
+            <tr>
+                <td>Java</td>
+                <td><input type="number" min="0" max="100" id="sub4" /> (Max:100)</td>
+            </tr>
+            <tr>
+                <td>DS</td>
+                <td><input type="number" min="0" max="100" id="sub5" /> (Max:100)</td>
+            </tr>
+            <tr>
+                <td>DM</td>
+                <td><input type="number" min="0" max="100" id="sub6" /> (Max:100)</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td><input type="number" id="Total" readonly /></td>
+            </tr>
+            <tr>
+                <td>Percentage</td>
+                <td><input type="number" id="per" readonly /></td>
+            </tr>
+            <tr>
+                <td>Grade</td>
+                <td><input type="text" id="grade" readonly /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="Calculate" onclick="calculate()" />
+                    <input type="button" value="Reset" onclick="resetForm()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
